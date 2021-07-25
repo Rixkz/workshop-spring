@@ -1,5 +1,6 @@
 package com.example.restfulapi.number;
 
+import com.example.restfulapi.user.UserResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,6 +22,11 @@ public class IdControllerTest {
 
     @MockBean
     private Random stubRandom;
+    @Test
+    void successWithGetUser() {
+        UserResponse userResponse = restTemplate.getForObject("/user", UserResponse.class);
+        assertEquals("Rick Sanchez", userResponse.getName());
+    }
 
     @Test
     void generateId() {
